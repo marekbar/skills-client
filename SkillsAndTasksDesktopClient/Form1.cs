@@ -28,6 +28,9 @@ namespace SkillsAndTasksDesktopClient
             {
                 userMenu.Visible = false;
             }
+            search.Text = SearchHint;
+            choice.SelectedIndex = 0;
+            LoadList(choice.SelectedIndex);
 
         }
 
@@ -107,6 +110,72 @@ namespace SkillsAndTasksDesktopClient
             Close();
         }
         #endregion
+
+        private void choice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadList(choice.SelectedIndex);
+
+        }
+
+        private String SearchHint = "wprowadź szukane słowo";
+        private void LoadList(int option)
+        {
+            String phrase = search.Text.ToUpper();
+            DataType Type = (DataType)choice.SelectedIndex;
+            grid.DataSource = null;
+            var names = new String[] { };
+
+
+            switch (Type)
+            {
+                case DataType.Skills:
+                    {
+                        if (phrase == "" || phrase.Contains(SearchHint.ToUpper()))
+                        {
+                            grid.DataSource = data.skills;
+                        }
+                        else
+                        {
+                            grid.DataSource = data.skills.Where(col =>
+                                col.Id.ToString().Contains(phrase) ||
+                                col.Name.ToUpper().Contains(phrase) ||
+                                col.Description.ToUpper().Contains(phrase)
+                                ).ToList();
+                        }
+                    }
+                    break;
+                case DataType.Users:
+                    {
+                        if (phrase == "" || phrase.Contains(SearchHint.ToUpper()))
+                        {
+                            grid.DataSource = data.users;
+                        }
+                        else
+                        {
+                            grid.DataSource = data.users.Where(col =>
+                                col.Id.ToString().Contains(phrase) ||
+                                col.Login.ToUpper().Contains(phrase) ||
+                                col.Mail.ToUpper().Contains(phrase) ||
+                                col.Name.ToUpper().Contains(phrase) ||
+                                col.Phone.ToUpper().Contains(phrase) ||
+                                col.Surname.ToUpper().Contains(phrase) ||
+                                col.Town.ToUpper().Contains(phrase)).ToList();
+                        }
+                    }
+                    break;
+            }
+
+            grid.Refresh();
+
+            if (names.Length > 0)
+            {
+                for (int i = 0; i < grid.ColumnCount; i++)
+                {
+                    grid.Columns[i].HeaderText = names[i];
+                }
+            }
+
+        }
 
 
     }
