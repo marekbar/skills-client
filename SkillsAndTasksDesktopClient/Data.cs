@@ -63,29 +63,36 @@ namespace SkillsAndTasksDesktopClient
 
                 var remote = service.getDatabase();
 
+                if (remote.Users != null)
+                {
+                    users.RemoveAll(u => u.Id >= 0);
+                    users.AddRange(remote.Users);
+                }
+
                 if (remote.Skills != null)
                 {
-                    skills.AddRange(remote.Skills);
-                    skills = skills.Distinct().ToList();
+                    foreach (var skill in remote.Skills)
+                    {
+                        if (!skills.HasSkill(skill)) skills.Add(skill);
+                    }
                 }
 
                 if (remote.Tasks != null)
                 {
-                    tasks.AddRange(remote.Tasks);
-                    tasks = tasks.Distinct().ToList();
+                    foreach (var task in remote.Tasks)
+                    {
+                        if (!tasks.HasTask(task)) tasks.Add(task);
+                    }
                 }
 
                 if (remote.UserSkills != null)
                 {
-                    userSkills.AddRange(remote.UserSkills);
-                    userSkills = userSkills.Distinct().ToList();
+                    foreach (var us in remote.UserSkills)
+                    {
+                        if (!userSkills.HasSkill(us)) userSkills.Add(us);
+                    }
                 }
 
-                if (remote.Users != null)
-                {
-                    users.AddRange(remote.Users);
-                    users = users.Distinct().ToList();
-                }
                 remote = null;
                 GC.Collect();
             }

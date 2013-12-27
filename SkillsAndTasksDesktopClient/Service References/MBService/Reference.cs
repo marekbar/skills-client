@@ -174,10 +174,22 @@ namespace SkillsAndTasksDesktopClient.MBService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/SkillsAndTasks")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SkillsAndTasksDesktopClient.MBService.User))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SkillsAndTasksDesktopClient.MBService.Skill))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SkillsAndTasksDesktopClient.MBService.Task))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SkillsAndTasksDesktopClient.MBService.UserSkill))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SkillsAndTasksDesktopClient.MBService.DatabaseData))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SkillsAndTasksDesktopClient.MBService.Skill[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SkillsAndTasksDesktopClient.MBService.Task[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SkillsAndTasksDesktopClient.MBService.UserSkill[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SkillsAndTasksDesktopClient.MBService.User[]))]
     public partial class Response : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object DataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ErrorField;
@@ -195,6 +207,19 @@ namespace SkillsAndTasksDesktopClient.MBService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
             }
         }
         
@@ -699,17 +724,53 @@ namespace SkillsAndTasksDesktopClient.MBService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/createSkill", ReplyAction="http://tempuri.org/IMBService/createSkillResponse")]
         System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> createSkillAsync(SkillsAndTasksDesktopClient.MBService.Skill skill);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/deleteSkill", ReplyAction="http://tempuri.org/IMBService/deleteSkillResponse")]
+        SkillsAndTasksDesktopClient.MBService.Response deleteSkill(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/deleteSkill", ReplyAction="http://tempuri.org/IMBService/deleteSkillResponse")]
+        System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> deleteSkillAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/updateSkill", ReplyAction="http://tempuri.org/IMBService/updateSkillResponse")]
+        SkillsAndTasksDesktopClient.MBService.Response updateSkill(SkillsAndTasksDesktopClient.MBService.Skill skill);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/updateSkill", ReplyAction="http://tempuri.org/IMBService/updateSkillResponse")]
+        System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> updateSkillAsync(SkillsAndTasksDesktopClient.MBService.Skill skill);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/createTask", ReplyAction="http://tempuri.org/IMBService/createTaskResponse")]
         SkillsAndTasksDesktopClient.MBService.Response createTask(SkillsAndTasksDesktopClient.MBService.Task task);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/createTask", ReplyAction="http://tempuri.org/IMBService/createTaskResponse")]
         System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> createTaskAsync(SkillsAndTasksDesktopClient.MBService.Task task);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/deleteTask", ReplyAction="http://tempuri.org/IMBService/deleteTaskResponse")]
+        SkillsAndTasksDesktopClient.MBService.Response deleteTask(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/deleteTask", ReplyAction="http://tempuri.org/IMBService/deleteTaskResponse")]
+        System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> deleteTaskAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/updateTask", ReplyAction="http://tempuri.org/IMBService/updateTaskResponse")]
+        SkillsAndTasksDesktopClient.MBService.Response updateTask(SkillsAndTasksDesktopClient.MBService.Task task);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/updateTask", ReplyAction="http://tempuri.org/IMBService/updateTaskResponse")]
+        System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> updateTaskAsync(SkillsAndTasksDesktopClient.MBService.Task task);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/createUserSkill", ReplyAction="http://tempuri.org/IMBService/createUserSkillResponse")]
         SkillsAndTasksDesktopClient.MBService.Response createUserSkill(SkillsAndTasksDesktopClient.MBService.UserSkill us);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/createUserSkill", ReplyAction="http://tempuri.org/IMBService/createUserSkillResponse")]
         System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> createUserSkillAsync(SkillsAndTasksDesktopClient.MBService.UserSkill us);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/deleteUserSkill", ReplyAction="http://tempuri.org/IMBService/deleteUserSkillResponse")]
+        SkillsAndTasksDesktopClient.MBService.Response deleteUserSkill(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/deleteUserSkill", ReplyAction="http://tempuri.org/IMBService/deleteUserSkillResponse")]
+        System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> deleteUserSkillAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/updateUserSkill", ReplyAction="http://tempuri.org/IMBService/updateUserSkillResponse")]
+        SkillsAndTasksDesktopClient.MBService.Response updateUserSkill(SkillsAndTasksDesktopClient.MBService.UserSkill us);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/updateUserSkill", ReplyAction="http://tempuri.org/IMBService/updateUserSkillResponse")]
+        System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> updateUserSkillAsync(SkillsAndTasksDesktopClient.MBService.UserSkill us);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMBService/loginExists", ReplyAction="http://tempuri.org/IMBService/loginExistsResponse")]
         SkillsAndTasksDesktopClient.MBService.Response loginExists(string name);
@@ -779,6 +840,22 @@ namespace SkillsAndTasksDesktopClient.MBService {
             return base.Channel.createSkillAsync(skill);
         }
         
+        public SkillsAndTasksDesktopClient.MBService.Response deleteSkill(int id) {
+            return base.Channel.deleteSkill(id);
+        }
+        
+        public System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> deleteSkillAsync(int id) {
+            return base.Channel.deleteSkillAsync(id);
+        }
+        
+        public SkillsAndTasksDesktopClient.MBService.Response updateSkill(SkillsAndTasksDesktopClient.MBService.Skill skill) {
+            return base.Channel.updateSkill(skill);
+        }
+        
+        public System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> updateSkillAsync(SkillsAndTasksDesktopClient.MBService.Skill skill) {
+            return base.Channel.updateSkillAsync(skill);
+        }
+        
         public SkillsAndTasksDesktopClient.MBService.Response createTask(SkillsAndTasksDesktopClient.MBService.Task task) {
             return base.Channel.createTask(task);
         }
@@ -787,12 +864,44 @@ namespace SkillsAndTasksDesktopClient.MBService {
             return base.Channel.createTaskAsync(task);
         }
         
+        public SkillsAndTasksDesktopClient.MBService.Response deleteTask(int id) {
+            return base.Channel.deleteTask(id);
+        }
+        
+        public System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> deleteTaskAsync(int id) {
+            return base.Channel.deleteTaskAsync(id);
+        }
+        
+        public SkillsAndTasksDesktopClient.MBService.Response updateTask(SkillsAndTasksDesktopClient.MBService.Task task) {
+            return base.Channel.updateTask(task);
+        }
+        
+        public System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> updateTaskAsync(SkillsAndTasksDesktopClient.MBService.Task task) {
+            return base.Channel.updateTaskAsync(task);
+        }
+        
         public SkillsAndTasksDesktopClient.MBService.Response createUserSkill(SkillsAndTasksDesktopClient.MBService.UserSkill us) {
             return base.Channel.createUserSkill(us);
         }
         
         public System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> createUserSkillAsync(SkillsAndTasksDesktopClient.MBService.UserSkill us) {
             return base.Channel.createUserSkillAsync(us);
+        }
+        
+        public SkillsAndTasksDesktopClient.MBService.Response deleteUserSkill(int id) {
+            return base.Channel.deleteUserSkill(id);
+        }
+        
+        public System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> deleteUserSkillAsync(int id) {
+            return base.Channel.deleteUserSkillAsync(id);
+        }
+        
+        public SkillsAndTasksDesktopClient.MBService.Response updateUserSkill(SkillsAndTasksDesktopClient.MBService.UserSkill us) {
+            return base.Channel.updateUserSkill(us);
+        }
+        
+        public System.Threading.Tasks.Task<SkillsAndTasksDesktopClient.MBService.Response> updateUserSkillAsync(SkillsAndTasksDesktopClient.MBService.UserSkill us) {
+            return base.Channel.updateUserSkillAsync(us);
         }
         
         public SkillsAndTasksDesktopClient.MBService.Response loginExists(string name) {

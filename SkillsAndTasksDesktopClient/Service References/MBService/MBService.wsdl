@@ -19,17 +19,53 @@
   <wsdl:message name="IMBService_createSkill_OutputMessage">
     <wsdl:part name="parameters" element="tns:createSkillResponse" />
   </wsdl:message>
+  <wsdl:message name="IMBService_deleteSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteSkill" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_deleteSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_updateSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateSkill" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_updateSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateSkillResponse" />
+  </wsdl:message>
   <wsdl:message name="IMBService_createTask_InputMessage">
     <wsdl:part name="parameters" element="tns:createTask" />
   </wsdl:message>
   <wsdl:message name="IMBService_createTask_OutputMessage">
     <wsdl:part name="parameters" element="tns:createTaskResponse" />
   </wsdl:message>
+  <wsdl:message name="IMBService_deleteTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteTask" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_deleteTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_updateTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateTask" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_updateTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateTaskResponse" />
+  </wsdl:message>
   <wsdl:message name="IMBService_createUserSkill_InputMessage">
     <wsdl:part name="parameters" element="tns:createUserSkill" />
   </wsdl:message>
   <wsdl:message name="IMBService_createUserSkill_OutputMessage">
     <wsdl:part name="parameters" element="tns:createUserSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_deleteUserSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteUserSkill" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_deleteUserSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteUserSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_updateUserSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateUserSkill" />
+  </wsdl:message>
+  <wsdl:message name="IMBService_updateUserSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateUserSkillResponse" />
   </wsdl:message>
   <wsdl:message name="IMBService_loginExists_InputMessage">
     <wsdl:part name="parameters" element="tns:loginExists" />
@@ -64,13 +100,37 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMBService/createSkill" message="tns:IMBService_createSkill_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMBService/createSkillResponse" message="tns:IMBService_createSkill_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="deleteSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMBService/deleteSkill" message="tns:IMBService_deleteSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMBService/deleteSkillResponse" message="tns:IMBService_deleteSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMBService/updateSkill" message="tns:IMBService_updateSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMBService/updateSkillResponse" message="tns:IMBService_updateSkill_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="createTask">
       <wsdl:input wsaw:Action="http://tempuri.org/IMBService/createTask" message="tns:IMBService_createTask_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMBService/createTaskResponse" message="tns:IMBService_createTask_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="deleteTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMBService/deleteTask" message="tns:IMBService_deleteTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMBService/deleteTaskResponse" message="tns:IMBService_deleteTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMBService/updateTask" message="tns:IMBService_updateTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMBService/updateTaskResponse" message="tns:IMBService_updateTask_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="createUserSkill">
       <wsdl:input wsaw:Action="http://tempuri.org/IMBService/createUserSkill" message="tns:IMBService_createUserSkill_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMBService/createUserSkillResponse" message="tns:IMBService_createUserSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteUserSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMBService/deleteUserSkill" message="tns:IMBService_deleteUserSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMBService/deleteUserSkillResponse" message="tns:IMBService_deleteUserSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateUserSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMBService/updateUserSkill" message="tns:IMBService_updateUserSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMBService/updateUserSkillResponse" message="tns:IMBService_updateUserSkill_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="loginExists">
       <wsdl:input wsaw:Action="http://tempuri.org/IMBService/loginExists" message="tns:IMBService_loginExists_InputMessage" />
@@ -109,6 +169,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="deleteSkill">
+      <soap:operation soapAction="http://tempuri.org/IMBService/deleteSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateSkill">
+      <soap:operation soapAction="http://tempuri.org/IMBService/updateSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="createTask">
       <soap:operation soapAction="http://tempuri.org/IMBService/createTask" style="document" />
       <wsdl:input>
@@ -118,8 +196,44 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="deleteTask">
+      <soap:operation soapAction="http://tempuri.org/IMBService/deleteTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateTask">
+      <soap:operation soapAction="http://tempuri.org/IMBService/updateTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="createUserSkill">
       <soap:operation soapAction="http://tempuri.org/IMBService/createUserSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUserSkill">
+      <soap:operation soapAction="http://tempuri.org/IMBService/deleteUserSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateUserSkill">
+      <soap:operation soapAction="http://tempuri.org/IMBService/updateUserSkill" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

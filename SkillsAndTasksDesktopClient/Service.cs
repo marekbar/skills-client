@@ -13,6 +13,7 @@ namespace SkillsAndTasksDesktopClient
             try
             {
                 MBService.MBServiceClient client = new MBService.MBServiceClient();
+                
 
                 return client;
             }
