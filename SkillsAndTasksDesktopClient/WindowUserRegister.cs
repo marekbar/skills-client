@@ -14,6 +14,7 @@ namespace SkillsAndTasksDesktopClient
     {
         public MBService.User user = new MBService.User();
         public bool Activate = false;
+        public bool Cancel = false;
 
         public WindowUserRegister()
         {
@@ -185,6 +186,7 @@ namespace SkillsAndTasksDesktopClient
 
         private void bLeave_Click(object sender, EventArgs e)
         {
+            Cancel = true;
             Close();
         }
 

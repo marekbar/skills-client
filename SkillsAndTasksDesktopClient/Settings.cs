@@ -14,9 +14,21 @@ namespace SkillsAndTasksDesktopClient
         public bool Activation{ get; set;}
         public String ActivationCode { get; set; }
 
+        public static bool UserExists { get; set; }
+
         public static Settings Restore()
         {
-            return Xml.Restore<Settings>(Common.SettingsFile);
+            var result = Xml.Restore<Settings>(Common.SettingsFile);
+            if (Xml.Error == XmlSerializeError.NONE && result.Activation && result.ActivationCode != "" && result.Login != "" && result.Password != "")
+            {
+                UserExists = true;
+            }
+            else
+            {
+                UserExists = false;
+            }
+            
+            return result;
         }
 
         public bool Save()

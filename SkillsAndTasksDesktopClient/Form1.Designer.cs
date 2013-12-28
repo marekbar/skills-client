@@ -39,6 +39,8 @@
             this.choice = new System.Windows.Forms.ToolStripComboBox();
             this.grid = new System.Windows.Forms.DataGridView();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuEditOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuDeleteOption = new System.Windows.Forms.ToolStripMenuItem();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUserRegister = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,8 +51,7 @@
             this.skillAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.taskAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUserSkill = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuEditOption = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuDeleteOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSync = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
@@ -144,7 +145,23 @@
             this.contextMenuEditOption,
             this.contextMenuDeleteOption});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(153, 70);
+            this.contextMenu.Size = new System.Drawing.Size(108, 48);
+            // 
+            // contextMenuEditOption
+            // 
+            this.contextMenuEditOption.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Pencil_icon;
+            this.contextMenuEditOption.Name = "contextMenuEditOption";
+            this.contextMenuEditOption.Size = new System.Drawing.Size(107, 22);
+            this.contextMenuEditOption.Text = "Edytuj";
+            this.contextMenuEditOption.Click += new System.EventHandler(this.contextMenuEditOption_Click);
+            // 
+            // contextMenuDeleteOption
+            // 
+            this.contextMenuDeleteOption.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Close_2_icon;
+            this.contextMenuDeleteOption.Name = "contextMenuDeleteOption";
+            this.contextMenuDeleteOption.Size = new System.Drawing.Size(107, 22);
+            this.contextMenuDeleteOption.Text = "Usuń";
+            this.contextMenuDeleteOption.Click += new System.EventHandler(this.contextMenuDeleteOption_Click);
             // 
             // programToolStripMenuItem
             // 
@@ -202,7 +219,8 @@
             this.edycjaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.skillAdd,
             this.taskAdd,
-            this.menuUserSkill});
+            this.menuUserSkill,
+            this.menuSync});
             this.edycjaToolStripMenuItem.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Pencil_icon;
             this.edycjaToolStripMenuItem.Name = "edycjaToolStripMenuItem";
             this.edycjaToolStripMenuItem.Size = new System.Drawing.Size(69, 23);
@@ -232,21 +250,13 @@
             this.menuUserSkill.Text = "Powiąż użytkownika z umiejętnością";
             this.menuUserSkill.Click += new System.EventHandler(this.menuUserSkill_Click);
             // 
-            // contextMenuEditOption
+            // menuSync
             // 
-            this.contextMenuEditOption.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Pencil_icon;
-            this.contextMenuEditOption.Name = "contextMenuEditOption";
-            this.contextMenuEditOption.Size = new System.Drawing.Size(152, 22);
-            this.contextMenuEditOption.Text = "Edytuj";
-            this.contextMenuEditOption.Click += new System.EventHandler(this.contextMenuEditOption_Click);
-            // 
-            // contextMenuDeleteOption
-            // 
-            this.contextMenuDeleteOption.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Close_2_icon;
-            this.contextMenuDeleteOption.Name = "contextMenuDeleteOption";
-            this.contextMenuDeleteOption.Size = new System.Drawing.Size(152, 22);
-            this.contextMenuDeleteOption.Text = "Usuń";
-            this.contextMenuDeleteOption.Click += new System.EventHandler(this.contextMenuDeleteOption_Click);
+            this.menuSync.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Reload_icon;
+            this.menuSync.Name = "menuSync";
+            this.menuSync.Size = new System.Drawing.Size(265, 22);
+            this.menuSync.Text = "Synchronizuj";
+            this.menuSync.Click += new System.EventHandler(this.menuSync_Click);
             // 
             // Form1
             // 
@@ -297,6 +307,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem contextMenuEditOption;
         private System.Windows.Forms.ToolStripMenuItem contextMenuDeleteOption;
+        private System.Windows.Forms.ToolStripMenuItem menuSync;
     }
 }
 

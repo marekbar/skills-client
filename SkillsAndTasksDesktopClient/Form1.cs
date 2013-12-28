@@ -25,17 +25,53 @@ namespace SkillsAndTasksDesktopClient
         private void FormLoad(object sender, EventArgs e)
         {
             settings = Settings.Restore();
-            if (settings.Activation && settings.Login != "" && settings.Password != "" && settings.ActivationCode != "")
+            if (Settings.UserExists)
             {
+                var bw = new BackgroundWorker();
+                bw.DoWork += (a, b) => {
+                    try
+                    {
+                        var service = Service.Create();
+                        var tmp = Settings.Restore();
+                        var response = service.login(tmp.Login, tmp.Password);
+                        b.Result = response.Result == true && response.HasError == false;
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ToLog();
+                        b.Result = false;
+                    }
+                };
+                bw.RunWorkerCompleted += (a, b) => {
+                    if (!(bool)b.Result)
+                    {
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        LoadList(DataType.Skills);
+                        status.Text = "Zalogowany.";
+                    }
+                };
+                bw.RunWorkerAsync();
                 userMenu.Visible = false;
+            }
+            else
+            {
+                if (settings.Login == "" && settings.Password == "")
+                {
+                    menuUserRegister_Click(sender, e);
+                }
+                else 
+                {
+                    menuUserActivate_Click(sender, e);
+                }
             }
             if (settings.Login != "")
             {
                 this.Text += " (" + settings.Login + ")";
             }
             search.Text = SearchHint;
-            LoadList(DataType.Skills);
-
         }
 
         private void menuUserRegister_Click(object sender, EventArgs e)
@@ -45,6 +81,10 @@ namespace SkillsAndTasksDesktopClient
             wur.Load += (a, b) => { this.Visible = false; };
             wur.FormClosing += (window, args) => {
                 var child = (WindowUserRegister)window;
+                if (child.Cancel) {
+                    Application.Exit();    
+                    return;
+                }
                 if (child.Activate)
                 {
                     settings.Login = child.user.Login;
@@ -52,66 +92,52 @@ namespace SkillsAndTasksDesktopClient
                     settings.Save();
                     
                     data.users.Add(child.user);
-
-                    var ac = new WindowUserActivate();
-                    ac.Load += (a, b) => { this.Visible = false; };
-                    ac.FormClosing += (a, b) => {
-                        settings.Activation = ((WindowUserActivate)a).IsActivated;
-                        settings.ActivationCode = ((WindowUserActivate)a).ActivationCode;
-                        settings.Save();
-                        
-                        if (settings.Activation)
-                        {
-                            userMenu.Visible = false;
-                            var bw = new BackgroundWorker();
-                            bw.DoWork += (aa, bb) =>
-                            {
-                                Data.Instance.sync();
-                            };
-                            bw.RunWorkerCompleted += (c, d) =>
-                            {
-                                LoadList(DataType.Users);
-                            };
-                            bw.RunWorkerAsync();
-                        }
-                    };
-                    ac.FormClosed += (a, b) => { this.Visible = true; };
-                    ac.Show();
+                    AppActivate();
                 }
                 else
                 {
                     child.FormClosed += (a, b) => { this.Visible = true;  };
                 }
             };
-            wur.Show();
+            wur.ShowDialog();
+        }
+        private void AppActivate()
+        {
+            this.Visible = false;
+            var ac = new WindowUserActivate();
+            ac.Load += (a, b) => { this.Visible = false; };
+            ac.FormClosing += (a, b) => {
+            settings.Activation = ((WindowUserActivate)a).IsActivated;
+            String code = ((WindowUserActivate)a).ActivationCode;
+            if(code!= "") settings.ActivationCode = code;
+            settings.Save();
+            if (settings.Activation)
+            {
+                userMenu.Visible = false;
+                var bw = new BackgroundWorker();
+                bw.DoWork += (aa, bb) =>
+                {
+                    Data.Instance.sync();
+                };
+                bw.RunWorkerCompleted += (c, d) =>
+                {
+                    LoadList(DataType.Users);
+                };
+                bw.RunWorkerAsync();
+                this.Show();
+            }
+            else
+            {
+                Application.Exit();
+            }
+            };
+            ac.FormClosed += (a, b) => { this.Visible = settings.Activation; };
+            ac.ShowDialog();
         }
 
         private void menuUserActivate_Click(object sender, EventArgs e)
         {
-            var ac = new WindowUserActivate();
-            ac.Load += (a, b) => { this.Visible = false; };
-            ac.FormClosing += (a, b) =>
-            {
-                settings.Activation = ((WindowUserActivate)a).IsActivated;
-                settings.ActivationCode = ((WindowUserActivate)a).ActivationCode;
-                settings.Save();
-                if (settings.Activation)
-                {
-                    userMenu.Visible = false;
-                    var bw = new BackgroundWorker();
-                    bw.DoWork += (aa, bb) =>
-                    {
-                        Data.Instance.sync();
-                    };
-                    bw.RunWorkerCompleted += (c, d) =>
-                    {
-                        LoadList(DataType.Users);
-                    };
-                    bw.RunWorkerAsync();
-                }
-            };
-            ac.FormClosed += (a, b) => { this.Visible = true; };
-            ac.ShowDialog();
+            AppActivate();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -756,6 +782,41 @@ namespace SkillsAndTasksDesktopClient
             {
                 DeleteRow(ContextMenuDataType);
             }
+        }
+
+        private void menuSync_Click(object sender, EventArgs e)
+        {
+            var bw = new BackgroundWorker();
+            bw.DoWork += (a, b) =>
+            {
+                try
+                {
+                    Data.Instance.sync();
+                    b.Result = true;
+                }
+                catch (Exception ex)
+                {
+                    ex.ToLog();
+                    b.Result = false;
+                }
+            };
+
+            bw.RunWorkerCompleted += (a, b) => {
+                if (!(bool)b.Result)
+                {
+                    status.Text = "synchronizacja zakończona niepowodzeniem.";
+                }
+                else
+                {
+                    status.Text = "Synchronizacja zakończona";
+                    LoadList((DataType)choice.SelectedIndex);
+                }
+                progress.Visible = false;
+            };
+
+            bw.RunWorkerAsync();
+            progress.Visible = true;
+            status.Text = "Synchronizacja trwa...";
         }
 
 

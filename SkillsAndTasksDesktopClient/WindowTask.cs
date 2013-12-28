@@ -114,12 +114,31 @@ namespace SkillsAndTasksDesktopClient
 
             tbTask.Text = task.TaskName;
             tbDescription.Text = task.Description;
-            dtpCreationDate.Value = task.CreationDate;
-            dtpModificationDate.Value = task.ModificationDate;
+            try
+            {
+                dtpCreationDate.Value = task.CreationDate;
+            }
+            catch (Exception ex) { ex.ToLog(); }
+            try
+            {
+                dtpModificationDate.Value = task.ModificationDate;
+            }
+            catch (Exception ex) { ex.ToLog(); }
 
-            cbAssignedTo.SelectedValue = task.AssignedTo;
+            try
+            {
+                cbAssignedTo.SelectedValue = task.AssignedTo;
+            }
+            catch (Exception ex) { ex.ToLog(); }
+            try{
             cbChangedBy.SelectedValue = task.ModifiedBy;
+            }
+            catch (Exception ex) { ex.ToLog(); }
+
+            try{
             cbCreatedBy.SelectedValue = task.CreatedBy;
+            }
+            catch (Exception ex) { ex.ToLog(); }
 
             cbIsFinished.SelectedIndex = task.IsFinished ? 1 : 0;
             int status = 0;

@@ -123,6 +123,16 @@ namespace SkillsAndTasksDesktopClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Reload_icon {
+            get {
+                object obj = ResourceManager.GetObject("Reload-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tester_icon {
             get {
                 object obj = ResourceManager.GetObject("tester-icon", resourceCulture);
