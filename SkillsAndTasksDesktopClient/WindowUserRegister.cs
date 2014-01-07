@@ -129,7 +129,6 @@ namespace SkillsAndTasksDesktopClient
             {
                 var client = Service.Create(); ;
                 var r = client.loginExists(tbLogin.Text);
-                client.Close();
 
                 if (r.HasError) throw new Exception(r.Error);
 

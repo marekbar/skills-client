@@ -1,9 +1,22 @@
-﻿using System;
+﻿/*
+ * Skills and tasks project
+ * Klient WinForms z komunikacją przez HTTPS i autoryzacją certyfikatem
+ * Author: Marek Bar 33808
+ * Wyższa Szkoła Inforatyki i Zarządzania w Rzeszowie
+ * marekbar1985@gmail.com
+ */
+using System;
 
 namespace SkillsAndTasksDesktopClient
 {
+    /// <summary>
+    /// Common tasks, settings, and so on
+    /// </summary>
     public class Common
     {
+        /// <summary>
+        /// Application folder
+        /// </summary>
         public static String Folder
         {
             get
@@ -18,6 +31,9 @@ namespace SkillsAndTasksDesktopClient
             }
         }
 
+        /// <summary>
+        /// Log filename
+        /// </summary>
         public static String LogFile
         {
             get
@@ -26,6 +42,9 @@ namespace SkillsAndTasksDesktopClient
             }
         }
 
+        /// <summary>
+        /// Setting filename
+        /// </summary>
         public static String SettingsFile
         {
             get 
@@ -34,6 +53,9 @@ namespace SkillsAndTasksDesktopClient
             }
         }
 
+        /// <summary>
+        /// Skill xml file
+        /// </summary>
         public static String SkillsFile
         {
             get
@@ -42,6 +64,9 @@ namespace SkillsAndTasksDesktopClient
             }
         }
 
+        /// <summary>
+        /// Task xml file
+        /// </summary>
         public static String TasksFile
         {
             get
@@ -50,6 +75,9 @@ namespace SkillsAndTasksDesktopClient
             }
         }
 
+        /// <summary>
+        /// UserSkill xml file
+        /// </summary>
         public static String UserSkillsFile
         {
             get
@@ -58,6 +86,9 @@ namespace SkillsAndTasksDesktopClient
             }
         }
 
+        /// <summary>
+        /// User xml file
+        /// </summary>
         public static String UsersFile
         {
             get
@@ -66,6 +97,10 @@ namespace SkillsAndTasksDesktopClient
             }
         }
 
+        /// <summary>
+        /// Log exception to file
+        /// </summary>
+        /// <param name="ex">Exception</param>
         public static void log(Exception ex)
         {
             try
@@ -92,6 +127,10 @@ namespace SkillsAndTasksDesktopClient
             catch { }
         }
 
+        /// <summary>
+        /// Log message to file
+        /// </summary>
+        /// <param name="message">String - log message</param>
         public static void log(String message)
         {
             try
@@ -118,8 +157,15 @@ namespace SkillsAndTasksDesktopClient
         }
     }
 
+    /// <summary>
+    /// Common class extensions
+    /// </summary>
     public static class CommonExtensions
     {
+        /// <summary>
+        /// Log exception to filename
+        /// </summary>
+        /// <param name="ex">Exception</param>
         public static void ToLog(this Exception ex)
         {
             Common.log(ex);

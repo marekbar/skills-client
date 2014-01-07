@@ -1,13 +1,15 @@
-﻿using SkillsAndTasksDesktopClient.MBService;
+﻿/*
+ * Skills and tasks project
+ * Klient WinForms z komunikacją przez HTTPS i autoryzacją certyfikatem
+ * Author: Marek Bar 33808
+ * Wyższa Szkoła Inforatyki i Zarządzania w Rzeszowie
+ * marekbar1985@gmail.com
+ */
+using SkillsAndTasksDesktopClient.MBService;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 
 namespace SkillsAndTasksDesktopClient
 {
@@ -15,16 +17,25 @@ namespace SkillsAndTasksDesktopClient
     {
         #region BASIC_FUNCTIONALITY
         public Settings settings = null;
-        public Data data = Data.Instance;
+        public Data data = null;
         private DataType ContextMenuDataType = DataType.Skills;
         public Form1()
         {
             InitializeComponent();
         }
 
+
         private void FormLoad(object sender, EventArgs e)
         {
+            if (!Certificate.Instance.InstallWhenNeeded())
+            {
+                MessageBox.Show("Należy zaimportować certyfikat z pliku Client.pfx do osobistego magazynu certyfikatów", "Brak certyfikatu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Exit();
+            }
+
             settings = Settings.Restore();
+
+            data = Data.Instance;
             if (Settings.UserExists)
             {
                 var bw = new BackgroundWorker();
@@ -45,6 +56,7 @@ namespace SkillsAndTasksDesktopClient
                 bw.RunWorkerCompleted += (a, b) => {
                     if (!(bool)b.Result)
                     {
+                        MessageBox.Show("Użytkownik " + settings.Login + " nie został rozpoznany.");
                         Application.Exit();
                     }
                     else
@@ -58,7 +70,7 @@ namespace SkillsAndTasksDesktopClient
             }
             else
             {
-                if (settings.Login == "" && settings.Password == "")
+                if (settings.Login == null || settings.Login == "" && settings.Password == null || settings.Password == "")
                 {
                     menuUserRegister_Click(sender, e);
                 }
@@ -142,11 +154,11 @@ namespace SkillsAndTasksDesktopClient
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!settings.Save())
+            if (settings != null && !settings.Save())
             {
                 Common.log("Ustawienia aplikacji nie zostały zapisane.");
             }
-            data.Store();
+            if(data != null) data.Store();
         }
 
         private void informacjaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -598,7 +610,7 @@ namespace SkillsAndTasksDesktopClient
                             throw new Exception(response.Error);
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         skill.Id = -1;
                     }
@@ -651,7 +663,7 @@ namespace SkillsAndTasksDesktopClient
                             throw new Exception(response.Error);
                         }
                     }
-                    catch(Exception ex)
+                    catch(Exception)
                     {
                         task.Id = -1;
                     }
@@ -704,7 +716,7 @@ namespace SkillsAndTasksDesktopClient
                             throw new Exception(response.Error);
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         su.Id = -1;
                     }

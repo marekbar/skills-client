@@ -35,12 +35,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.progress = new System.Windows.Forms.ToolStripProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.search = new System.Windows.Forms.ToolStripTextBox();
-            this.choice = new System.Windows.Forms.ToolStripComboBox();
-            this.grid = new System.Windows.Forms.DataGridView();
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuEditOption = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuDeleteOption = new System.Windows.Forms.ToolStripMenuItem();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUserRegister = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +46,12 @@
             this.taskAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUserSkill = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSync = new System.Windows.Forms.ToolStripMenuItem();
+            this.search = new System.Windows.Forms.ToolStripTextBox();
+            this.choice = new System.Windows.Forms.ToolStripComboBox();
+            this.grid = new System.Windows.Forms.DataGridView();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuEditOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuDeleteOption = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
@@ -99,69 +99,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(784, 27);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // search
-            // 
-            this.search.BackColor = System.Drawing.Color.Gainsboro;
-            this.search.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(200, 23);
-            this.search.Text = "wpisz szukane słowo";
-            this.search.Enter += new System.EventHandler(this.search_Enter);
-            this.search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.search_KeyDown);
-            this.search.Click += new System.EventHandler(this.search_Click);
-            // 
-            // choice
-            // 
-            this.choice.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.choice.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.choice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.choice.Items.AddRange(new object[] {
-            "Umiejętności",
-            "Zadania",
-            "Użytkownicy",
-            "Umiejętności użytkowników"});
-            this.choice.Name = "choice";
-            this.choice.Size = new System.Drawing.Size(200, 23);
-            this.choice.SelectedIndexChanged += new System.EventHandler(this.choice_SelectedIndexChanged);
-            // 
-            // grid
-            // 
-            this.grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.ContextMenuStrip = this.contextMenu;
-            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.grid.Location = new System.Drawing.Point(0, 27);
-            this.grid.MultiSelect = false;
-            this.grid.Name = "grid";
-            this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid.Size = new System.Drawing.Size(784, 412);
-            this.grid.TabIndex = 2;
-            // 
-            // contextMenu
-            // 
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contextMenuEditOption,
-            this.contextMenuDeleteOption});
-            this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(108, 48);
-            // 
-            // contextMenuEditOption
-            // 
-            this.contextMenuEditOption.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Pencil_icon;
-            this.contextMenuEditOption.Name = "contextMenuEditOption";
-            this.contextMenuEditOption.Size = new System.Drawing.Size(107, 22);
-            this.contextMenuEditOption.Text = "Edytuj";
-            this.contextMenuEditOption.Click += new System.EventHandler(this.contextMenuEditOption_Click);
-            // 
-            // contextMenuDeleteOption
-            // 
-            this.contextMenuDeleteOption.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Close_2_icon;
-            this.contextMenuDeleteOption.Name = "contextMenuDeleteOption";
-            this.contextMenuDeleteOption.Size = new System.Drawing.Size(107, 22);
-            this.contextMenuDeleteOption.Text = "Usuń";
-            this.contextMenuDeleteOption.Click += new System.EventHandler(this.contextMenuDeleteOption_Click);
             // 
             // programToolStripMenuItem
             // 
@@ -257,6 +194,69 @@
             this.menuSync.Size = new System.Drawing.Size(265, 22);
             this.menuSync.Text = "Synchronizuj";
             this.menuSync.Click += new System.EventHandler(this.menuSync_Click);
+            // 
+            // search
+            // 
+            this.search.BackColor = System.Drawing.Color.Gainsboro;
+            this.search.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(200, 23);
+            this.search.Text = "wpisz szukane słowo";
+            this.search.Enter += new System.EventHandler(this.search_Enter);
+            this.search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.search_KeyDown);
+            this.search.Click += new System.EventHandler(this.search_Click);
+            // 
+            // choice
+            // 
+            this.choice.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.choice.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.choice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.choice.Items.AddRange(new object[] {
+            "Umiejętności",
+            "Zadania",
+            "Użytkownicy",
+            "Umiejętności użytkowników"});
+            this.choice.Name = "choice";
+            this.choice.Size = new System.Drawing.Size(200, 23);
+            this.choice.SelectedIndexChanged += new System.EventHandler(this.choice_SelectedIndexChanged);
+            // 
+            // grid
+            // 
+            this.grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.ContextMenuStrip = this.contextMenu;
+            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.grid.Location = new System.Drawing.Point(0, 27);
+            this.grid.MultiSelect = false;
+            this.grid.Name = "grid";
+            this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grid.Size = new System.Drawing.Size(784, 412);
+            this.grid.TabIndex = 2;
+            // 
+            // contextMenu
+            // 
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextMenuEditOption,
+            this.contextMenuDeleteOption});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(108, 48);
+            // 
+            // contextMenuEditOption
+            // 
+            this.contextMenuEditOption.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Pencil_icon;
+            this.contextMenuEditOption.Name = "contextMenuEditOption";
+            this.contextMenuEditOption.Size = new System.Drawing.Size(107, 22);
+            this.contextMenuEditOption.Text = "Edytuj";
+            this.contextMenuEditOption.Click += new System.EventHandler(this.contextMenuEditOption_Click);
+            // 
+            // contextMenuDeleteOption
+            // 
+            this.contextMenuDeleteOption.Image = global::SkillsAndTasksDesktopClient.Properties.Resources.Close_2_icon;
+            this.contextMenuDeleteOption.Name = "contextMenuDeleteOption";
+            this.contextMenuDeleteOption.Size = new System.Drawing.Size(107, 22);
+            this.contextMenuDeleteOption.Text = "Usuń";
+            this.contextMenuDeleteOption.Click += new System.EventHandler(this.contextMenuDeleteOption_Click);
             // 
             // Form1
             // 

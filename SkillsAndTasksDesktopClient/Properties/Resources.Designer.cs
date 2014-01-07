@@ -91,6 +91,16 @@ namespace SkillsAndTasksDesktopClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Gakuseisean_Ivista_2_Alarm_Padlock {
+            get {
+                object obj = ResourceManager.GetObject("Gakuseisean_Ivista_2_Alarm_Padlock", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Info_icon {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6feb4fde-8257-4b68-ab0c-e9e7a50756a0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4e19b165-00db-4415-b4b6-4a50cae3732d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://skills-2.apphb.com/MBService.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://127.0.0.1/MBService.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MBService.xsd" MetadataType="Schema" ID="c4912693-ccde-4f76-aa06-6a8564b8a96b" SourceId="1" SourceUrl="http://skills-2.apphb.com/MBService.svc?xsd=xsd1" />
-    <MetadataFile FileName="MBService.wsdl" MetadataType="Wsdl" ID="556dd805-6b4e-405b-a66b-32addef1dce6" SourceId="1" SourceUrl="http://skills-2.apphb.com/MBService.svc?wsdl" />
-    <MetadataFile FileName="MBService1.xsd" MetadataType="Schema" ID="01d1d757-3247-4585-b119-acd78189aafc" SourceId="1" SourceUrl="http://skills-2.apphb.com/MBService.svc?xsd=xsd2" />
-    <MetadataFile FileName="MBService2.xsd" MetadataType="Schema" ID="ef608486-6fda-4a8f-bb42-d9ad4dd1f0c4" SourceId="1" SourceUrl="http://skills-2.apphb.com/MBService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MBService.xsd" MetadataType="Schema" ID="74a09d07-5a23-4297-9273-a5aec8921771" SourceId="1" SourceUrl="https://127.0.0.1/MBService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MBService1.xsd" MetadataType="Schema" ID="6b6a49e7-51c3-4e5d-ab67-4816d61151b8" SourceId="1" SourceUrl="https://127.0.0.1/MBService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MBService.wsdl" MetadataType="Wsdl" ID="399c7f5a-d2b3-4659-b0f4-a39562ff54a5" SourceId="1" SourceUrl="https://127.0.0.1/MBService.svc?wsdl" />
+    <MetadataFile FileName="MBService2.xsd" MetadataType="Schema" ID="0f304520-931c-4bda-b15c-09490ad45f4d" SourceId="1" SourceUrl="https://127.0.0.1/MBService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

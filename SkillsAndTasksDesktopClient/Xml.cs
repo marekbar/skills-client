@@ -1,32 +1,102 @@
-﻿/**
- * Marek Bar
+﻿/*
+ * Skills and tasks project
+ * Klient WinForms z komunikacją przez HTTPS i autoryzacją certyfikatem
+ * Author: Marek Bar 33808
+ * Wyższa Szkoła Inforatyki i Zarządzania w Rzeszowie
  * marekbar1985@gmail.com
- * Generic serializing
- * Save and/or restore object to/from xml
- **/
+ */
 using System;
 using System.IO;
 namespace marekbar
 {
+    /// <summary>
+    /// Xml serialization error type
+    /// </summary>
     public enum XmlSerializeError
     {
+        /// <summary>
+        /// Argument not found - oops
+        /// </summary>
         ARGUMENT_NULL,
+
+        /// <summary>
+        /// Argument went out of range
+        /// </summary>
         ARGUMENT_OUT_OF_RANGE,
+
+        /// <summary>
+        /// Something wrong with argument
+        /// </summary>
         ARGUMENT_ERROR,
+
+        /// <summary>
+        /// Path to file was to long
+        /// </summary>
         PATH_TOO_LONG,
+
+        /// <summary>
+        /// There's no such dir
+        /// </summary>
         MISSING_DIRECTORY,
+
+        /// <summary>
+        /// File not found
+        /// </summary>
         MISSING_FILE,
+
+        /// <summary>
+        /// Security problem
+        /// </summary>
         SECURITY_ERROR,
+
+        /// <summary>
+        /// Input/output error
+        /// </summary>
         IO_ERROR,
+
+        /// <summary>
+        /// Oops
+        /// </summary>
         NOT_SUPPORTED,
+
+        /// <summary>
+        /// Can't do that
+        /// </summary>
         INVALID_OPERATION,
+
+        /// <summary>
+        /// Something else
+        /// </summary>
         GENERAL,
+
+        /// <summary>
+        /// No errors, hurray
+        /// </summary>
         NONE
     }
+
+    /// <summary>
+    /// Class to read from and save to xml 
+    /// </summary>
     public class Xml
     {
+        /// <summary>
+        /// Error type
+        /// </summary>
         public static XmlSerializeError Error = XmlSerializeError.NONE;
+
+        /// <summary>
+        /// Error message
+        /// </summary>
         public static String Message = "";
+
+        /// <summary>
+        /// Save object to xml file
+        /// </summary>
+        /// <typeparam name="T">object type</typeparam>
+        /// <param name="Source">object</param>
+        /// <param name="filename">file</param>
+        /// <returns>bool</returns>
         public static Boolean Save<T>(T Source, String filename)
         {
             var backup = filename + ".backup";
@@ -122,6 +192,12 @@ namespace marekbar
             return false;
         }
 
+        /// <summary>
+        /// Restore object from xml
+        /// </summary>
+        /// <typeparam name="T">object type</typeparam>
+        /// <param name="filename">file</param>
+        /// <returns>object</returns>
         public static T Restore<T>(String filename) where T: new()
         {
             try
